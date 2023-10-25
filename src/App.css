@@ -1,0 +1,18 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
+}
+.Square{
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+
+}
+.Field{
+  margin: 100px;
+  position: fixed;
+}
+.Field-row{
+  display: flex;
+}
