@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import './App.css';
-import Table from './Table';
+import Game from './Game';
 
 
 
 
 function App() {
   return (<div className='Field'>
-    <Table />
+    <Game/>
   </div>
   );
   }

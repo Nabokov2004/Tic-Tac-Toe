@@ -3,13 +3,18 @@ import { useState } from "react";
 import Square from "./Square";
 
 
+type Table ={
+    xIsNext: boolean;
+    squares: string[];
+    currentMove:number;
+     onPlay: (nextSquares:string[]) => void;
+}
 
 
 
-
-function Table(){
-    const [xIsNext,setXIsNext] = useState(true)
-    const [squares, setSquares] = useState(Array(9).fill(""));
+function Table({xIsNext,squares,onPlay,currentMove}:Table){
+    // const [xIsNext,setXIsNext] = useState(true)
+    // const [squares, setSquares] = useState(Array(9).fill(""));
     
     function handleClick(i:number){
     if(squares[i] || calculateWinner(squares)){
@@ -23,8 +28,7 @@ function Table(){
     nextSquares[i] = "O";
     
     }
-    setXIsNext(!xIsNext);
-    setSquares(nextSquares);
+    onPlay(nextSquares);
     
     
     }
@@ -32,8 +36,13 @@ function Table(){
     let status;
     if (winner) {
     status = "Winner: " + winner;
-    } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    } 
+    else if(currentMove !== 9){
+        status = "Next player: " + (xIsNext ? "X" : "O");
+    }
+    else
+    {
+        status = "Drow"
     }
     return(
     <>
@@ -62,7 +71,7 @@ function Table(){
 
 
     
-function calculateWinner(squares:number[]) {
+function calculateWinner(squares:string[]) {
     const lines = [
     [0, 1, 2],
     [3, 4, 5],
